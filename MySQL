@@ -1,0 +1,116 @@
+create schema project_manager;
+use project_manager;
+
+CREATE TABLE users(
+ first_name varchar(40),
+ last_name varchar(40), 
+ employee_id INT,  
+ user_id INT AUTO_INCREMENT PRIMARY KEY,
+ mgr_ind boolean);
+ 
+ drop table users
+ 
+INSERT INTO user values ('Siva', 'Gnanagaran', 10001);
+ 
+INSERT user VALUES ('Siva', 'Gnanagaran', 1001,01);
+
+select * from users
+select * from projects
+
+drop table projects
+
+CREATE TABLE project(
+ project_id INT AUTO_INCREMENT PRIMARY KEY,
+ project_name varchar(200), 
+ start_date Date,  
+ end_date Date,
+ priority INT,
+ user_id INT NOT NULL FOREIGN KEY REFERENCES user(user_id)
+ );
+ 
+  );
+ 
+ select * from projects
+ 
+ delete from project where project_id in (1,2,3)
+ 
+ 
+ select * from tasks
+ 
+ 
+ 
+ 
+ 
+ CREATE TABLE projects (
+    project_id INT NOT NULL AUTO_INCREMENT,
+    project_name varchar (200),
+    start_date Date ,
+    end_date Date ,
+	priority INT,
+    user_id INT,
+    PRIMARY KEY(project_id)
+);
+
+
+ALTER TABLE projects ADD FOREIGN KEY (user_id) references users(user_id);
+
+CREATE TABLE parents(
+ parent_id INT AUTO_INCREMENT PRIMARY KEY,
+ parent_name varchar(200)
+ );
+ 
+ drop table tasks
+
+CREATE TABLE tasks(
+ task_id INT AUTO_INCREMENT PRIMARY KEY,
+ task_name varchar(200),
+ start_date Date ,
+ end_date Date ,
+ priority INT,
+ task_status boolean,
+ user_id INT,
+ project_id INT,
+ parent_id int
+ );
+ 
+ 
+ ALTER TABLE tasks ADD FOREIGN KEY (user_id) references users(user_id);
+ ALTER TABLE tasks ADD FOREIGN KEY (project_id) references projects(project_id);
+ ALTER TABLE tasks ADD FOREIGN KEY (parent_id) references parents(parent_id);
+ 
+ 
+ 
+ INSERT INTO parents values (1, "Coding");
+ INSERT INTO parents values (2, "Testing");
+ 
+ select * from tasks;
+ 
+ delete from tasks where task_id in (9,10,11,12);
+ select * from users;
+ select * from projects;
+ select * from tasks;
+ update set project_status = 0
+ where project_id = 4
+ select * from parents;
+ select * from tasks;
+ 
+ 
+ insert into tasks values (3, "coding 456", "2001-01-01", "2001-02-01", 5, 0, 2, 5, 1);
+ insert into tasks values (4, "Testing 456", "2001-02-01", "2001-03-01", 5, 1, 2, 5, 2);
+ 
+ task_id INT AUTO_INCREMENT PRIMARY KEY,
+ task_name varchar(200),
+ start_date Date ,
+ end_date Date ,
+ priority INT,
+ task_status varchar(10),
+ user_id INT,
+ project_id INT,
+ parent_id int
+ 
+ALTER TABLE projects
+ADD COLUMN project_status boolean AFTER priority;
+
+update projects 
+set project_status = false
+where project_id = 5;
